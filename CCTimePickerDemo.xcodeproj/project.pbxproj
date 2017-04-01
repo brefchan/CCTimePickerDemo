@@ -1,0 +1,690 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A63322E1E8CDE9200D4B11A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63322D1E8CDE9200D4B11A /* main.m */; };
+		9A6332311E8CDE9200D4B11A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6332301E8CDE9200D4B11A /* AppDelegate.m */; };
+		9A6332341E8CDE9200D4B11A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6332331E8CDE9200D4B11A /* ViewController.m */; };
+		9A6332371E8CDE9200D4B11A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A6332351E8CDE9200D4B11A /* Main.storyboard */; };
+		9A6332391E8CDE9200D4B11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A6332381E8CDE9200D4B11A /* Assets.xcassets */; };
+		9A63323C1E8CDE9200D4B11A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A63323A1E8CDE9200D4B11A /* LaunchScreen.storyboard */; };
+		9A6332471E8CDE9200D4B11A /* CCTimePickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6332461E8CDE9200D4B11A /* CCTimePickerDemoTests.m */; };
+		9A6332521E8CDE9200D4B11A /* CCTimePickerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6332511E8CDE9200D4B11A /* CCTimePickerDemoUITests.m */; };
+		9A9DAE091E8FB6CA000FBC77 /* CCDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADDE1E8FB6CA000FBC77 /* CCDatePickerView.m */; };
+		9A9DAE0A1E8FB6CA000FBC77 /* CCDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9DADDF1E8FB6CA000FBC77 /* CCDatePickerView.xib */; };
+		9A9DAE0B1E8FB6CA000FBC77 /* CCHourCircleSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADE11E8FB6CA000FBC77 /* CCHourCircleSlider.m */; };
+		9A9DAE0C1E8FB6CA000FBC77 /* CCHourPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADE31E8FB6CA000FBC77 /* CCHourPickerView.m */; };
+		9A9DAE0D1E8FB6CA000FBC77 /* CCMiniteCircleSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADE51E8FB6CA000FBC77 /* CCMiniteCircleSlider.m */; };
+		9A9DAE0E1E8FB6CA000FBC77 /* CCMinitePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADE71E8FB6CA000FBC77 /* CCMinitePickerView.m */; };
+		9A9DAE0F1E8FB6CA000FBC77 /* CCTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADE91E8FB6CA000FBC77 /* CCTimePickerView.m */; };
+		9A9DAE101E8FB6CA000FBC77 /* CCTimePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9DADEA1E8FB6CA000FBC77 /* CCTimePickerView.xib */; };
+		9A9DAE111E8FB6CA000FBC77 /* CCYearPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADEC1E8FB6CA000FBC77 /* CCYearPickerView.m */; };
+		9A9DAE121E8FB6CA000FBC77 /* CCYearPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A9DADED1E8FB6CA000FBC77 /* CCYearPickerView.xib */; };
+		9A9DAE131E8FB6CA000FBC77 /* NSDate+CCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADEF1E8FB6CA000FBC77 /* NSDate+CCUtil.m */; };
+		9A9DAE141E8FB6CA000FBC77 /* UIView+CCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADF11E8FB6CA000FBC77 /* UIView+CCUtil.m */; };
+		9A9DAE151E8FB6CA000FBC77 /* JTCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADF51E8FB6CA000FBC77 /* JTCalendar.m */; };
+		9A9DAE161E8FB6CA000FBC77 /* JTCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADF71E8FB6CA000FBC77 /* JTCalendarAppearance.m */; };
+		9A9DAE171E8FB6CA000FBC77 /* JTCalendarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADF91E8FB6CA000FBC77 /* JTCalendarContentView.m */; };
+		9A9DAE181E8FB6CA000FBC77 /* JTCalendarDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADFB1E8FB6CA000FBC77 /* JTCalendarDayView.m */; };
+		9A9DAE191E8FB6CA000FBC77 /* JTCalendarMenuMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADFD1E8FB6CA000FBC77 /* JTCalendarMenuMonthView.m */; };
+		9A9DAE1A1E8FB6CA000FBC77 /* JTCalendarMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DADFF1E8FB6CA000FBC77 /* JTCalendarMenuView.m */; };
+		9A9DAE1B1E8FB6CA000FBC77 /* JTCalendarMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DAE011E8FB6CA000FBC77 /* JTCalendarMonthView.m */; };
+		9A9DAE1C1E8FB6CA000FBC77 /* JTCalendarMonthWeekDaysView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DAE031E8FB6CA000FBC77 /* JTCalendarMonthWeekDaysView.m */; };
+		9A9DAE1D1E8FB6CA000FBC77 /* JTCalendarWeekView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DAE061E8FB6CA000FBC77 /* JTCalendarWeekView.m */; };
+		9A9DAE1E1E8FB6CA000FBC77 /* JTCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A9DAE081E8FB6CA000FBC77 /* JTCircleView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A6332431E8CDE9200D4B11A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6332211E8CDE9200D4B11A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A6332281E8CDE9200D4B11A;
+			remoteInfo = CCTimePickerDemo;
+		};
+		9A63324E1E8CDE9200D4B11A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A6332211E8CDE9200D4B11A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A6332281E8CDE9200D4B11A;
+			remoteInfo = CCTimePickerDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9A6332291E8CDE9200D4B11A /* CCTimePickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CCTimePickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A63322D1E8CDE9200D4B11A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9A63322F1E8CDE9200D4B11A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9A6332301E8CDE9200D4B11A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9A6332321E8CDE9200D4B11A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9A6332331E8CDE9200D4B11A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9A6332361E8CDE9200D4B11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9A6332381E8CDE9200D4B11A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9A63323B1E8CDE9200D4B11A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9A63323D1E8CDE9200D4B11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A6332421E8CDE9200D4B11A /* CCTimePickerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCTimePickerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A6332461E8CDE9200D4B11A /* CCTimePickerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTimePickerDemoTests.m; sourceTree = "<group>"; };
+		9A6332481E8CDE9200D4B11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A63324D1E8CDE9200D4B11A /* CCTimePickerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CCTimePickerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A6332511E8CDE9200D4B11A /* CCTimePickerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CCTimePickerDemoUITests.m; sourceTree = "<group>"; };
+		9A6332531E8CDE9200D4B11A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A9DADDD1E8FB6CA000FBC77 /* CCDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDatePickerView.h; sourceTree = "<group>"; };
+		9A9DADDE1E8FB6CA000FBC77 /* CCDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCDatePickerView.m; sourceTree = "<group>"; };
+		9A9DADDF1E8FB6CA000FBC77 /* CCDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCDatePickerView.xib; sourceTree = "<group>"; };
+		9A9DADE01E8FB6CA000FBC77 /* CCHourCircleSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCHourCircleSlider.h; sourceTree = "<group>"; };
+		9A9DADE11E8FB6CA000FBC77 /* CCHourCircleSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCHourCircleSlider.m; sourceTree = "<group>"; };
+		9A9DADE21E8FB6CA000FBC77 /* CCHourPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCHourPickerView.h; sourceTree = "<group>"; };
+		9A9DADE31E8FB6CA000FBC77 /* CCHourPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCHourPickerView.m; sourceTree = "<group>"; };
+		9A9DADE41E8FB6CA000FBC77 /* CCMiniteCircleSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMiniteCircleSlider.h; sourceTree = "<group>"; };
+		9A9DADE51E8FB6CA000FBC77 /* CCMiniteCircleSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMiniteCircleSlider.m; sourceTree = "<group>"; };
+		9A9DADE61E8FB6CA000FBC77 /* CCMinitePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMinitePickerView.h; sourceTree = "<group>"; };
+		9A9DADE71E8FB6CA000FBC77 /* CCMinitePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMinitePickerView.m; sourceTree = "<group>"; };
+		9A9DADE81E8FB6CA000FBC77 /* CCTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTimePickerView.h; sourceTree = "<group>"; };
+		9A9DADE91E8FB6CA000FBC77 /* CCTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCTimePickerView.m; sourceTree = "<group>"; };
+		9A9DADEA1E8FB6CA000FBC77 /* CCTimePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCTimePickerView.xib; sourceTree = "<group>"; };
+		9A9DADEB1E8FB6CA000FBC77 /* CCYearPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCYearPickerView.h; sourceTree = "<group>"; };
+		9A9DADEC1E8FB6CA000FBC77 /* CCYearPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCYearPickerView.m; sourceTree = "<group>"; };
+		9A9DADED1E8FB6CA000FBC77 /* CCYearPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CCYearPickerView.xib; sourceTree = "<group>"; };
+		9A9DADEE1E8FB6CA000FBC77 /* NSDate+CCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+CCUtil.h"; sourceTree = "<group>"; };
+		9A9DADEF1E8FB6CA000FBC77 /* NSDate+CCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+CCUtil.m"; sourceTree = "<group>"; };
+		9A9DADF01E8FB6CA000FBC77 /* UIView+CCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CCUtil.h"; sourceTree = "<group>"; };
+		9A9DADF11E8FB6CA000FBC77 /* UIView+CCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CCUtil.m"; sourceTree = "<group>"; };
+		9A9DADF41E8FB6CA000FBC77 /* JTCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendar.h; sourceTree = "<group>"; };
+		9A9DADF51E8FB6CA000FBC77 /* JTCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendar.m; sourceTree = "<group>"; };
+		9A9DADF61E8FB6CA000FBC77 /* JTCalendarAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarAppearance.h; sourceTree = "<group>"; };
+		9A9DADF71E8FB6CA000FBC77 /* JTCalendarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendarAppearance.m; sourceTree = "<group>"; };
+		9A9DADF81E8FB6CA000FBC77 /* JTCalendarContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarContentView.h; sourceTree = "<group>"; };
+		9A9DADF91E8FB6CA000FBC77 /* JTCalendarContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendarContentView.m; sourceTree = "<group>"; };
+		9A9DADFA1E8FB6CA000FBC77 /* JTCalendarDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarDayView.h; sourceTree = "<group>"; };
+		9A9DADFB1E8FB6CA000FBC77 /* JTCalendarDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendarDayView.m; sourceTree = "<group>"; };
+		9A9DADFC1E8FB6CA000FBC77 /* JTCalendarMenuMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarMenuMonthView.h; sourceTree = "<group>"; };
+		9A9DADFD1E8FB6CA000FBC77 /* JTCalendarMenuMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendarMenuMonthView.m; sourceTree = "<group>"; };
+		9A9DADFE1E8FB6CA000FBC77 /* JTCalendarMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarMenuView.h; sourceTree = "<group>"; };
+		9A9DADFF1E8FB6CA000FBC77 /* JTCalendarMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendarMenuView.m; sourceTree = "<group>"; };
+		9A9DAE001E8FB6CA000FBC77 /* JTCalendarMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarMonthView.h; sourceTree = "<group>"; };
+		9A9DAE011E8FB6CA000FBC77 /* JTCalendarMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendarMonthView.m; sourceTree = "<group>"; };
+		9A9DAE021E8FB6CA000FBC77 /* JTCalendarMonthWeekDaysView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarMonthWeekDaysView.h; sourceTree = "<group>"; };
+		9A9DAE031E8FB6CA000FBC77 /* JTCalendarMonthWeekDaysView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendarMonthWeekDaysView.m; sourceTree = "<group>"; };
+		9A9DAE041E8FB6CA000FBC77 /* JTCalendarViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarViewDataSource.h; sourceTree = "<group>"; };
+		9A9DAE051E8FB6CA000FBC77 /* JTCalendarWeekView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCalendarWeekView.h; sourceTree = "<group>"; };
+		9A9DAE061E8FB6CA000FBC77 /* JTCalendarWeekView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCalendarWeekView.m; sourceTree = "<group>"; };
+		9A9DAE071E8FB6CA000FBC77 /* JTCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTCircleView.h; sourceTree = "<group>"; };
+		9A9DAE081E8FB6CA000FBC77 /* JTCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTCircleView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A6332261E8CDE9200D4B11A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63323F1E8CDE9200D4B11A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63324A1E8CDE9200D4B11A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A6332201E8CDE9200D4B11A = {
+			isa = PBXGroup;
+			children = (
+				9A63322B1E8CDE9200D4B11A /* CCTimePickerDemo */,
+				9A6332451E8CDE9200D4B11A /* CCTimePickerDemoTests */,
+				9A6332501E8CDE9200D4B11A /* CCTimePickerDemoUITests */,
+				9A63322A1E8CDE9200D4B11A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A63322A1E8CDE9200D4B11A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A6332291E8CDE9200D4B11A /* CCTimePickerDemo.app */,
+				9A6332421E8CDE9200D4B11A /* CCTimePickerDemoTests.xctest */,
+				9A63324D1E8CDE9200D4B11A /* CCTimePickerDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A63322B1E8CDE9200D4B11A /* CCTimePickerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				9A9DADDC1E8FB6CA000FBC77 /* CCTimePicker */,
+				9A63322F1E8CDE9200D4B11A /* AppDelegate.h */,
+				9A6332301E8CDE9200D4B11A /* AppDelegate.m */,
+				9A6332321E8CDE9200D4B11A /* ViewController.h */,
+				9A6332331E8CDE9200D4B11A /* ViewController.m */,
+				9A6332351E8CDE9200D4B11A /* Main.storyboard */,
+				9A6332381E8CDE9200D4B11A /* Assets.xcassets */,
+				9A63323A1E8CDE9200D4B11A /* LaunchScreen.storyboard */,
+				9A63323D1E8CDE9200D4B11A /* Info.plist */,
+				9A63322C1E8CDE9200D4B11A /* Supporting Files */,
+			);
+			path = CCTimePickerDemo;
+			sourceTree = "<group>";
+		};
+		9A63322C1E8CDE9200D4B11A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9A63322D1E8CDE9200D4B11A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9A6332451E8CDE9200D4B11A /* CCTimePickerDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				9A6332461E8CDE9200D4B11A /* CCTimePickerDemoTests.m */,
+				9A6332481E8CDE9200D4B11A /* Info.plist */,
+			);
+			path = CCTimePickerDemoTests;
+			sourceTree = "<group>";
+		};
+		9A6332501E8CDE9200D4B11A /* CCTimePickerDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9A6332511E8CDE9200D4B11A /* CCTimePickerDemoUITests.m */,
+				9A6332531E8CDE9200D4B11A /* Info.plist */,
+			);
+			path = CCTimePickerDemoUITests;
+			sourceTree = "<group>";
+		};
+		9A9DADDC1E8FB6CA000FBC77 /* CCTimePicker */ = {
+			isa = PBXGroup;
+			children = (
+				9A9DADDD1E8FB6CA000FBC77 /* CCDatePickerView.h */,
+				9A9DADDE1E8FB6CA000FBC77 /* CCDatePickerView.m */,
+				9A9DADDF1E8FB6CA000FBC77 /* CCDatePickerView.xib */,
+				9A9DADE01E8FB6CA000FBC77 /* CCHourCircleSlider.h */,
+				9A9DADE11E8FB6CA000FBC77 /* CCHourCircleSlider.m */,
+				9A9DADE21E8FB6CA000FBC77 /* CCHourPickerView.h */,
+				9A9DADE31E8FB6CA000FBC77 /* CCHourPickerView.m */,
+				9A9DADE41E8FB6CA000FBC77 /* CCMiniteCircleSlider.h */,
+				9A9DADE51E8FB6CA000FBC77 /* CCMiniteCircleSlider.m */,
+				9A9DADE61E8FB6CA000FBC77 /* CCMinitePickerView.h */,
+				9A9DADE71E8FB6CA000FBC77 /* CCMinitePickerView.m */,
+				9A9DADE81E8FB6CA000FBC77 /* CCTimePickerView.h */,
+				9A9DADE91E8FB6CA000FBC77 /* CCTimePickerView.m */,
+				9A9DADEA1E8FB6CA000FBC77 /* CCTimePickerView.xib */,
+				9A9DADEB1E8FB6CA000FBC77 /* CCYearPickerView.h */,
+				9A9DADEC1E8FB6CA000FBC77 /* CCYearPickerView.m */,
+				9A9DADED1E8FB6CA000FBC77 /* CCYearPickerView.xib */,
+				9A9DADEE1E8FB6CA000FBC77 /* NSDate+CCUtil.h */,
+				9A9DADEF1E8FB6CA000FBC77 /* NSDate+CCUtil.m */,
+				9A9DADF01E8FB6CA000FBC77 /* UIView+CCUtil.h */,
+				9A9DADF11E8FB6CA000FBC77 /* UIView+CCUtil.m */,
+				9A9DADF21E8FB6CA000FBC77 /* vendor */,
+			);
+			path = CCTimePicker;
+			sourceTree = "<group>";
+		};
+		9A9DADF21E8FB6CA000FBC77 /* vendor */ = {
+			isa = PBXGroup;
+			children = (
+				9A9DADF31E8FB6CA000FBC77 /* JTCalendar */,
+			);
+			path = vendor;
+			sourceTree = "<group>";
+		};
+		9A9DADF31E8FB6CA000FBC77 /* JTCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				9A9DADF41E8FB6CA000FBC77 /* JTCalendar.h */,
+				9A9DADF51E8FB6CA000FBC77 /* JTCalendar.m */,
+				9A9DADF61E8FB6CA000FBC77 /* JTCalendarAppearance.h */,
+				9A9DADF71E8FB6CA000FBC77 /* JTCalendarAppearance.m */,
+				9A9DADF81E8FB6CA000FBC77 /* JTCalendarContentView.h */,
+				9A9DADF91E8FB6CA000FBC77 /* JTCalendarContentView.m */,
+				9A9DADFA1E8FB6CA000FBC77 /* JTCalendarDayView.h */,
+				9A9DADFB1E8FB6CA000FBC77 /* JTCalendarDayView.m */,
+				9A9DADFC1E8FB6CA000FBC77 /* JTCalendarMenuMonthView.h */,
+				9A9DADFD1E8FB6CA000FBC77 /* JTCalendarMenuMonthView.m */,
+				9A9DADFE1E8FB6CA000FBC77 /* JTCalendarMenuView.h */,
+				9A9DADFF1E8FB6CA000FBC77 /* JTCalendarMenuView.m */,
+				9A9DAE001E8FB6CA000FBC77 /* JTCalendarMonthView.h */,
+				9A9DAE011E8FB6CA000FBC77 /* JTCalendarMonthView.m */,
+				9A9DAE021E8FB6CA000FBC77 /* JTCalendarMonthWeekDaysView.h */,
+				9A9DAE031E8FB6CA000FBC77 /* JTCalendarMonthWeekDaysView.m */,
+				9A9DAE041E8FB6CA000FBC77 /* JTCalendarViewDataSource.h */,
+				9A9DAE051E8FB6CA000FBC77 /* JTCalendarWeekView.h */,
+				9A9DAE061E8FB6CA000FBC77 /* JTCalendarWeekView.m */,
+				9A9DAE071E8FB6CA000FBC77 /* JTCircleView.h */,
+				9A9DAE081E8FB6CA000FBC77 /* JTCircleView.m */,
+			);
+			path = JTCalendar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9A6332281E8CDE9200D4B11A /* CCTimePickerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A6332561E8CDE9200D4B11A /* Build configuration list for PBXNativeTarget "CCTimePickerDemo" */;
+			buildPhases = (
+				9A6332251E8CDE9200D4B11A /* Sources */,
+				9A6332261E8CDE9200D4B11A /* Frameworks */,
+				9A6332271E8CDE9200D4B11A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CCTimePickerDemo;
+			productName = CCTimePickerDemo;
+			productReference = 9A6332291E8CDE9200D4B11A /* CCTimePickerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9A6332411E8CDE9200D4B11A /* CCTimePickerDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A6332591E8CDE9200D4B11A /* Build configuration list for PBXNativeTarget "CCTimePickerDemoTests" */;
+			buildPhases = (
+				9A63323E1E8CDE9200D4B11A /* Sources */,
+				9A63323F1E8CDE9200D4B11A /* Frameworks */,
+				9A6332401E8CDE9200D4B11A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A6332441E8CDE9200D4B11A /* PBXTargetDependency */,
+			);
+			name = CCTimePickerDemoTests;
+			productName = CCTimePickerDemoTests;
+			productReference = 9A6332421E8CDE9200D4B11A /* CCTimePickerDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9A63324C1E8CDE9200D4B11A /* CCTimePickerDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A63325C1E8CDE9200D4B11A /* Build configuration list for PBXNativeTarget "CCTimePickerDemoUITests" */;
+			buildPhases = (
+				9A6332491E8CDE9200D4B11A /* Sources */,
+				9A63324A1E8CDE9200D4B11A /* Frameworks */,
+				9A63324B1E8CDE9200D4B11A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A63324F1E8CDE9200D4B11A /* PBXTargetDependency */,
+			);
+			name = CCTimePickerDemoUITests;
+			productName = CCTimePickerDemoUITests;
+			productReference = 9A63324D1E8CDE9200D4B11A /* CCTimePickerDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A6332211E8CDE9200D4B11A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = Bref;
+				TargetAttributes = {
+					9A6332281E8CDE9200D4B11A = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = QG2U2D2S6S;
+						ProvisioningStyle = Automatic;
+					};
+					9A6332411E8CDE9200D4B11A = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9A6332281E8CDE9200D4B11A;
+					};
+					9A63324C1E8CDE9200D4B11A = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9A6332281E8CDE9200D4B11A;
+					};
+				};
+			};
+			buildConfigurationList = 9A6332241E8CDE9200D4B11A /* Build configuration list for PBXProject "CCTimePickerDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9A6332201E8CDE9200D4B11A;
+			productRefGroup = 9A63322A1E8CDE9200D4B11A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A6332281E8CDE9200D4B11A /* CCTimePickerDemo */,
+				9A6332411E8CDE9200D4B11A /* CCTimePickerDemoTests */,
+				9A63324C1E8CDE9200D4B11A /* CCTimePickerDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9A6332271E8CDE9200D4B11A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A63323C1E8CDE9200D4B11A /* LaunchScreen.storyboard in Resources */,
+				9A6332391E8CDE9200D4B11A /* Assets.xcassets in Resources */,
+				9A9DAE0A1E8FB6CA000FBC77 /* CCDatePickerView.xib in Resources */,
+				9A9DAE121E8FB6CA000FBC77 /* CCYearPickerView.xib in Resources */,
+				9A9DAE101E8FB6CA000FBC77 /* CCTimePickerView.xib in Resources */,
+				9A6332371E8CDE9200D4B11A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A6332401E8CDE9200D4B11A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63324B1E8CDE9200D4B11A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A6332251E8CDE9200D4B11A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A9DAE131E8FB6CA000FBC77 /* NSDate+CCUtil.m in Sources */,
+				9A9DAE161E8FB6CA000FBC77 /* JTCalendarAppearance.m in Sources */,
+				9A9DAE151E8FB6CA000FBC77 /* JTCalendar.m in Sources */,
+				9A6332341E8CDE9200D4B11A /* ViewController.m in Sources */,
+				9A9DAE191E8FB6CA000FBC77 /* JTCalendarMenuMonthView.m in Sources */,
+				9A9DAE0D1E8FB6CA000FBC77 /* CCMiniteCircleSlider.m in Sources */,
+				9A9DAE1E1E8FB6CA000FBC77 /* JTCircleView.m in Sources */,
+				9A6332311E8CDE9200D4B11A /* AppDelegate.m in Sources */,
+				9A9DAE171E8FB6CA000FBC77 /* JTCalendarContentView.m in Sources */,
+				9A9DAE1B1E8FB6CA000FBC77 /* JTCalendarMonthView.m in Sources */,
+				9A9DAE091E8FB6CA000FBC77 /* CCDatePickerView.m in Sources */,
+				9A9DAE0E1E8FB6CA000FBC77 /* CCMinitePickerView.m in Sources */,
+				9A9DAE141E8FB6CA000FBC77 /* UIView+CCUtil.m in Sources */,
+				9A9DAE111E8FB6CA000FBC77 /* CCYearPickerView.m in Sources */,
+				9A9DAE1D1E8FB6CA000FBC77 /* JTCalendarWeekView.m in Sources */,
+				9A63322E1E8CDE9200D4B11A /* main.m in Sources */,
+				9A9DAE1C1E8FB6CA000FBC77 /* JTCalendarMonthWeekDaysView.m in Sources */,
+				9A9DAE1A1E8FB6CA000FBC77 /* JTCalendarMenuView.m in Sources */,
+				9A9DAE0C1E8FB6CA000FBC77 /* CCHourPickerView.m in Sources */,
+				9A9DAE0F1E8FB6CA000FBC77 /* CCTimePickerView.m in Sources */,
+				9A9DAE0B1E8FB6CA000FBC77 /* CCHourCircleSlider.m in Sources */,
+				9A9DAE181E8FB6CA000FBC77 /* JTCalendarDayView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63323E1E8CDE9200D4B11A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A6332471E8CDE9200D4B11A /* CCTimePickerDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A6332491E8CDE9200D4B11A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A6332521E8CDE9200D4B11A /* CCTimePickerDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A6332441E8CDE9200D4B11A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A6332281E8CDE9200D4B11A /* CCTimePickerDemo */;
+			targetProxy = 9A6332431E8CDE9200D4B11A /* PBXContainerItemProxy */;
+		};
+		9A63324F1E8CDE9200D4B11A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A6332281E8CDE9200D4B11A /* CCTimePickerDemo */;
+			targetProxy = 9A63324E1E8CDE9200D4B11A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9A6332351E8CDE9200D4B11A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A6332361E8CDE9200D4B11A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9A63323A1E8CDE9200D4B11A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A63323B1E8CDE9200D4B11A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9A6332541E8CDE9200D4B11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9A6332551E8CDE9200D4B11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9A6332571E8CDE9200D4B11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QG2U2D2S6S;
+				INFOPLIST_FILE = CCTimePickerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Bref.CCTimePickerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9A6332581E8CDE9200D4B11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QG2U2D2S6S;
+				INFOPLIST_FILE = CCTimePickerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Bref.CCTimePickerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9A63325A1E8CDE9200D4B11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CCTimePickerDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Bref.CCTimePickerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CCTimePickerDemo.app/CCTimePickerDemo";
+			};
+			name = Debug;
+		};
+		9A63325B1E8CDE9200D4B11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CCTimePickerDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Bref.CCTimePickerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CCTimePickerDemo.app/CCTimePickerDemo";
+			};
+			name = Release;
+		};
+		9A63325D1E8CDE9200D4B11A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CCTimePickerDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Bref.CCTimePickerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CCTimePickerDemo;
+			};
+			name = Debug;
+		};
+		9A63325E1E8CDE9200D4B11A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = CCTimePickerDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Bref.CCTimePickerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = CCTimePickerDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A6332241E8CDE9200D4B11A /* Build configuration list for PBXProject "CCTimePickerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A6332541E8CDE9200D4B11A /* Debug */,
+				9A6332551E8CDE9200D4B11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A6332561E8CDE9200D4B11A /* Build configuration list for PBXNativeTarget "CCTimePickerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A6332571E8CDE9200D4B11A /* Debug */,
+				9A6332581E8CDE9200D4B11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A6332591E8CDE9200D4B11A /* Build configuration list for PBXNativeTarget "CCTimePickerDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A63325A1E8CDE9200D4B11A /* Debug */,
+				9A63325B1E8CDE9200D4B11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A63325C1E8CDE9200D4B11A /* Build configuration list for PBXNativeTarget "CCTimePickerDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A63325D1E8CDE9200D4B11A /* Debug */,
+				9A63325E1E8CDE9200D4B11A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A6332211E8CDE9200D4B11A /* Project object */;
+}
