@@ -7,6 +7,7 @@
 //
 
 #import "CCDatePickerView.h"
+#import "UIView+CCUtil.h"
 
 @implementation CCDatePickerView
 
@@ -16,6 +17,29 @@
     
     self.backgroundColor = [UIColor clearColor];
     [self.calendar reloadData];
+}
+
+- (void)setSelectDate:(NSDate *)date
+{
+    [self.calendar setCurrentDate:[NSDate date]];
+    [self.calendar setCurrentDateSelected:date];
+    
+    [self.contentView setCurrentDate:date];
+    [self.menuView setCurrentDate:date];
+    [self.calendar reloadData];
+    [self.contentView reloadData];
+    [self.contentView reloadAppearance];
+    [self.menuView reloadAppearance];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self.contentView layoutIfNeeded];
+    [self.menuView layoutIfNeeded];
+    
+    [self.calendar repositionViews];
 }
 
 #pragma mark - JTCalendarDataSource
@@ -36,7 +60,7 @@
 - (JTCalendar *)calendar
 {
     if (!_calendar) {
-        _calendar = [JTCalendar new];
+        _calendar = [[JTCalendar alloc] init];
         _calendar.calendarAppearance.calendar.firstWeekday = 2;
         _calendar.calendarAppearance.dayCircleRatio = 9. / 10.;
         _calendar.calendarAppearance.ratioContentMenu = 1.;

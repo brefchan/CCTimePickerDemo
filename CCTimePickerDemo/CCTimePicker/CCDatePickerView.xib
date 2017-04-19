@@ -42,7 +42,7 @@
                 <outlet property="contentView" destination="hLi-qw-Km4" id="AiV-Xq-Lgw"/>
                 <outlet property="menuView" destination="4GJ-2q-9zG" id="e1h-8N-cXx"/>
             </connections>
-            <point key="canvasLocation" x="-256" y="149"/>
+            <point key="canvasLocation" x="-420" y="150"/>
         </view>
     </objects>
 </document>

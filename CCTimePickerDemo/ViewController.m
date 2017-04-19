@@ -12,6 +12,11 @@
 #import "CCTimePickerView.h"
 
 @interface ViewController ()
+<
+    CCTimePickerViewDelegage
+>
+
+@property (nonatomic, strong) CCTimePickerView *pickerView;
 
 @end
 
@@ -21,11 +26,27 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    CCTimePickerView *datePicker = [CCTimePickerView viewFromXib];
-    datePicker.frame = CGRectMake(50, 50, 260, 380);
-    [datePicker setCurrentDate:[NSDate date]];
-    [self.view addSubview:datePicker];
+    self.pickerView = [CCTimePickerView viewFromXib];
+    self.pickerView.delegate = self;
+    [self.pickerView setCurrentDate:[NSDate date]];
     
+}
+
+#pragma mark - Event
+- (IBAction)popButtonClick:(id)sender {
+    [self.pickerView popInView:self.view];
+}
+
+#pragma mark - Delegate
+#pragma mark CCTimePickerViewDelegate
+- (void)pickerView:(CCTimePickerView *)timePickerView didSelectTime:(NSDate *)date
+{
+    NSLog(@"%@",date);
+}
+
+- (void)pickerViewCancelSelect:(CCTimePickerView *)timePickerView
+{
+    NSLog(@"取消");
 }
 
 

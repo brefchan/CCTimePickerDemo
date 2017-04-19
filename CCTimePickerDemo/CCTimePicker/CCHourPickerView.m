@@ -42,24 +42,20 @@
 {
     [super layoutSubviews];
     
-    if (self.bounds.size.width != self.bounds.size.height) {
-        if (self.bounds.size.width > self.bounds.size.height) {
-            _hourSlider.frame = CGRectMake(0, 0, self.bounds.size.height, self.bounds.size.height);
-            _hourSlider.center = self.center;
-        }else
-        {
-            _hourSlider.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.width);
-            _hourSlider.center = self.center;
-        }
+    if (self.bounds.size.width > self.bounds.size.height) {
+        _hourSlider.frame = CGRectMake(0, 0, self.bounds.size.height - 20, self.bounds.size.height - 20);
+        _hourSlider.center = self.center;
     }else
     {
-        _hourSlider.frame = self.bounds;
+        _hourSlider.frame = CGRectMake(0, 0, self.bounds.size.width - 20, self.bounds.size.width - 20);
+        _hourSlider.center = self.center;
     }
+
 }
 
 #pragma mark - Public
 - (void)setHourWithDate:(NSDate *)date{
-    NSString *hour = [date dateToString:@"HH"];
+    NSString *hour = [date stringForDateWithFormat:@"HH"];
     NSInteger hourNumber;
     if (hour.integerValue > 12) {
         self.state = CCHourPickerViewStatePM;

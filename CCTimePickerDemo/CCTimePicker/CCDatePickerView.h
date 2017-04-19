@@ -29,6 +29,6 @@
 
 @property (nonatomic, weak) id<CCDatePickerViewDelegate> delegate;
 
-
+- (void)setSelectDate:(NSDate *)date;
 
 @end

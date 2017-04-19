@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class JTCalendar;
+
 @interface JTCalendarAppearance : NSObject
 
 typedef NS_ENUM(NSInteger, JTCalendarWeekDayFormat) {
@@ -15,13 +17,20 @@ typedef NS_ENUM(NSInteger, JTCalendarWeekDayFormat) {
     JTCalendarWeekDayFormatFull
 };
 
+typedef NSString *(^JTCalendarMonthBlock)(NSDate *date, JTCalendar *jt_calendar);
+
 @property (assign, nonatomic) BOOL isWeekMode;
+@property (assign, nonatomic) BOOL useCacheSystem;
+@property (assign, nonatomic) BOOL focusSelectedDayChangeMode;
+@property (assign, nonatomic) BOOL readFromRightToLeft; // For language read from right to left
 
 // Month
 @property (strong, nonatomic) UIColor *menuMonthTextColor;
 @property (strong, nonatomic) UIFont *menuMonthTextFont;
 
 @property (assign, nonatomic) CGFloat ratioContentMenu;
+@property (assign, nonatomic) BOOL autoChangeMonth;
+@property (nonatomic, copy) JTCalendarMonthBlock monthBlock;
 
 // Weekday
 @property (assign, nonatomic) JTCalendarWeekDayFormat weekDayFormat;
@@ -50,6 +59,13 @@ typedef NS_ENUM(NSInteger, JTCalendarWeekDayFormat) {
 
 @property (strong, nonatomic) UIFont *dayTextFont;
 
+@property (strong, nonatomic) NSString *dayFormat;
+
+// Day Background and Border
+@property (strong, nonatomic) UIColor *dayBackgroundColor;
+@property (assign, nonatomic) CGFloat dayBorderWidth;
+@property (assign, nonatomic) UIColor *dayBorderColor;
+
 @property (assign, nonatomic) CGFloat dayCircleRatio;
 @property (assign, nonatomic) CGFloat dayDotRatio;
 
@@ -59,15 +75,3 @@ typedef NS_ENUM(NSInteger, JTCalendarWeekDayFormat) {
 - (void)setDayTextColorForAll:(UIColor *)textColor;
 
 @end
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 

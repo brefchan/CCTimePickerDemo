@@ -7,12 +7,37 @@
 //
 
 #import "NSDate+CCUtil.h"
+#import <objc/runtime.h>
 
 @implementation NSDate (CCUtil)
-- (NSString *)dateToString:(NSString *)format
+
+static NSString *formatterKey = @"formatterKey";
+
++ (NSDateFormatter *)formatter
 {
-    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = objc_getAssociatedObject(self, &formatterKey);
+    
+    if (!formatter) {
+        formatter = [[NSDateFormatter alloc] init];
+        objc_setAssociatedObject(self, &formatterKey,formatter, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    }
+    
+    return objc_getAssociatedObject(self, &formatterKey);
+}
+
+
+- (NSString *)stringForDateWithFormat:(NSString *)format
+{
+    NSDateFormatter *dateFormater = [NSDate formatter];
     [dateFormater setDateFormat:format];
     return [dateFormater stringFromDate:self];
 }
+
++ (NSDate *)dateWithDateString:(NSString *)dateString format:(NSString *)dateFormat
+{
+    NSDateFormatter *dateFormater = [NSDate formatter];
+    [dateFormater setDateFormat:dateFormat];
+    return [dateFormater dateFromString:dateString];
+}
+
 @end

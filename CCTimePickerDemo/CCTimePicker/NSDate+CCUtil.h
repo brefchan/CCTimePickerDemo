@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface NSDate (CCUtil)
-- (NSString *)dateToString:(NSString *)format;
+
+
+- (NSString *)stringForDateWithFormat:(NSString *)format;
+
++ (NSDate *)dateWithDateString:(NSString *)dateString format:(NSString *)dateFormat;
+
 
 @end

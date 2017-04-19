@@ -13,6 +13,8 @@
 #import "JTCalendarMenuView.h"
 #import "JTCalendarContentView.h"
 
+#import "JTCalendarDataCache.h"
+
 @interface JTCalendar : NSObject<UIScrollViewDelegate>
 
 @property (weak, nonatomic) JTCalendarMenuView *menuMonthsView;
@@ -23,24 +25,18 @@
 @property (strong, nonatomic) NSDate *currentDate;
 @property (strong, nonatomic) NSDate *currentDateSelected;
 
-- (JTCalendarAppearance *)calendarAppearance;
+@property (strong, nonatomic, readonly) JTCalendarDataCache *dataCache;
+@property (strong, nonatomic, readonly) JTCalendarAppearance *calendarAppearance;
 
 - (void)reloadData;
 - (void)reloadAppearance;
 
-- (void)loadPreviousMonth;
-- (void)loadNextMonth;
+- (void)loadPreviousMonth DEPRECATED_MSG_ATTRIBUTE("Use loadPreviousPage instead");
+- (void)loadNextMonth DEPRECATED_MSG_ATTRIBUTE("Use loadNextPage instead");
+
+- (void)loadPreviousPage;
+- (void)loadNextPage;
+
+- (void)repositionViews;
 
 @end
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 

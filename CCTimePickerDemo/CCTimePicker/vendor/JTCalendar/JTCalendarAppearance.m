@@ -7,6 +7,8 @@
 
 #import "JTCalendarAppearance.h"
 
+#import "JTCalendar.h"
+
 @implementation JTCalendarAppearance
 
 - (instancetype)init
@@ -26,14 +28,25 @@
     self.isWeekMode = NO;
     
     self.weekDayFormat = JTCalendarWeekDayFormatShort;
+    self.useCacheSystem = YES;
+    self.focusSelectedDayChangeMode = NO;
     
     self.ratioContentMenu = 2.;
+    self.autoChangeMonth = YES;
+    
     self.dayCircleRatio = 1.;
     self.dayDotRatio = 1. / 9.;
     
     self.menuMonthTextFont = [UIFont systemFontOfSize:17.];
     self.weekDayTextFont = [UIFont systemFontOfSize:11];
     self.dayTextFont = [UIFont systemFontOfSize:[UIFont systemFontSize]];
+
+    self.dayFormat = @"dd";
+
+    // Day Background and Border
+    self.dayBackgroundColor = [UIColor clearColor];
+    self.dayBorderWidth = 0.0f;
+    self.dayBorderColor = [UIColor clearColor];
     
     self.menuMonthTextColor = [UIColor blackColor];
     self.weekDayTextColor = [UIColor colorWithRed:152./256. green:147./256. blue:157./256. alpha:1.];
@@ -58,6 +71,24 @@
     self.dayCircleColorTodayOtherMonth = self.dayCircleColorToday;
     self.dayTextColorTodayOtherMonth = self.dayTextColorToday;
     self.dayDotColorTodayOtherMonth = self.dayDotColorToday;
+    
+    self.monthBlock = ^NSString *(NSDate *date, JTCalendar *jt_calendar){
+        NSCalendar *calendar = jt_calendar.calendarAppearance.calendar;
+        NSDateComponents *comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth fromDate:date];
+        NSInteger currentMonthIndex = comps.month;
+        
+        static NSDateFormatter *dateFormatter;
+        if(!dateFormatter){
+            dateFormatter = [NSDateFormatter new];
+            dateFormatter.timeZone = jt_calendar.calendarAppearance.calendar.timeZone;
+        }
+        
+        while(currentMonthIndex <= 0){
+            currentMonthIndex += 12;
+        }
+        
+        return [[dateFormatter standaloneMonthSymbols][currentMonthIndex - 1] capitalizedString];
+    };
 }
 
 - (NSCalendar *)calendar
@@ -66,7 +97,11 @@
     static dispatch_once_t once;
     
     dispatch_once(&once, ^{
+#ifdef __IPHONE_8_0
+        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+#else
         calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+#endif
         calendar.timeZone = [NSTimeZone localTimeZone];
     });
     
@@ -98,7 +133,3 @@
 }
 
 @end
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 

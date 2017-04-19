@@ -16,6 +16,18 @@ typedef NS_ENUM(NSUInteger,CCTimePickerState) {
     CCTimePickerStateMinite
 };
 
+@class CCTimePickerView;
+
+@protocol CCTimePickerViewDelegage<NSObject>
+
+@optional
+- (void)pickerView:(CCTimePickerView *)timePickerView didSelectTime:(NSDate *)date;
+
+- (void)pickerViewCancelSelect:(CCTimePickerView *)timePickerView;
+
+@end
+
+
 @interface CCTimePickerView : UIView
 
 @property (weak, nonatomic) IBOutlet UIButton *yearButton;
@@ -24,8 +36,14 @@ typedef NS_ENUM(NSUInteger,CCTimePickerState) {
 @property (weak, nonatomic) IBOutlet UIButton *hourButton;
 @property (weak, nonatomic) IBOutlet UIButton *miniteButton;
 
+@property (nonatomic, strong) NSDate *currentSelectDate;;
+
 @property (nonatomic, assign) CCTimePickerState state;
 
+@property (nonatomic, weak) id<CCTimePickerViewDelegage> delegate;
+
 - (void)setCurrentDate:(NSDate *)date;
+
+- (void)popInView:(UIView *)view;
 
 @end

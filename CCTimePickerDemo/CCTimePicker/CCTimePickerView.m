@@ -11,7 +11,9 @@
 #import "CCYearPickerView.h"
 #import "CCHourPickerView.h"
 #import "CCMinitePickerView.h"
+#import "NSDate+CCUtil.h"
 #import "UIView+CCUtil.h"
+#import "Masonry.h"
 
 @interface CCTimePickerView()
 <
@@ -22,12 +24,21 @@
 >
 
 
+@property (weak, nonatomic) IBOutlet UIButton *backgourdButton;
+
+@property (nonatomic, assign) IBOutlet UIView *clipView;
 @property (weak, nonatomic) IBOutlet UIView *selectCotentView;
 @property (nonatomic, strong) CCDatePickerView *datePickerView;
 
 @property (nonatomic, strong) CCYearPickerView *yearPickerView;
 @property (nonatomic, strong) CCHourPickerView *hourPickerView;
 @property (nonatomic, strong) CCMinitePickerView *minitePickerView;
+
+@property (nonatomic, strong) NSString *yearString;
+@property (nonatomic, strong) NSString *monthAndDayStirng;
+@property (nonatomic, strong) NSString *hourString;
+@property (nonatomic, strong) NSString *miniteString;
+
 
 @end
 
@@ -36,6 +47,13 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+
+    self.clipView.layer.cornerRadius = 4.f;
+    self.clipView.clipsToBounds = YES;
+    
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOpacity = .6f;
+    self.layer.shadowOffset = CGSizeMake(1, 1);
     
     [self.selectCotentView addSubview:self.datePickerView];
     [self.selectCotentView addSubview:self.yearPickerView];
@@ -45,16 +63,30 @@
     [self timeButtonClick:self.timeButton];
 }
 
-
-- (void)layoutSubviews
+- (void)updateConstraints
 {
-    [super layoutSubviews];
+    [super updateConstraints];
     
-    self.datePickerView.frame = self.selectCotentView.bounds;
-    self.yearPickerView.frame = self.selectCotentView.bounds;
-    self.hourPickerView.frame = self.selectCotentView.bounds;
-    self.minitePickerView.frame = self.selectCotentView.bounds;
+    __weak CCTimePickerView *weakSelf = self;
+    [self.datePickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.and.left.and.bottom.and.right.mas_equalTo(weakSelf.selectCotentView);
+    }];
+    
+    [self.yearPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+       make.top.and.left.and.bottom.and.right.mas_equalTo(weakSelf.selectCotentView);
+    }];
+    
+    [self.hourPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.and.left.and.bottom.and.right.mas_equalTo(weakSelf.selectCotentView);
+    }];
+    
+    [self.minitePickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.and.left.and.bottom.and.right.mas_equalTo(weakSelf.selectCotentView);
+    }];
 }
+
+
+
 
 - (void)setupButton
 {
@@ -64,45 +96,100 @@
     self.miniteButton.transform = CGAffineTransformMakeScale(0.7, 0.7);
 }
 
+#pragma mark - Public Method
+- (void)popInView:(UIView *)view
+{
+    self.frame = view.bounds;
+    [view addSubview:self];
+    
+    self.clipView.alpha = 0;
+    self.clipView.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+    
+    [UIView animateWithDuration:.3f animations:^{
+        self.backgourdButton.alpha = .5f;
+        self.clipView.alpha = 1;
+        self.clipView.transform = CGAffineTransformIdentity;
+    }];
+}
+
+- (void)hide
+{
+    self.clipView.transform = CGAffineTransformIdentity;
+    self.clipView.alpha = 1;
+    
+    [UIView animateWithDuration:.3f animations:^{
+        self.backgourdButton.alpha = 0;
+        self.clipView.alpha = 0;
+        self.clipView.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+    }];
+}
+
+
+
 #pragma mark - Delegate
 
 #pragma mark CCYearPickerViewDelegate
 - (void)yearPikcerView:(CCYearPickerView *)pickerView didSelectYear:(NSString *)year
 {
-    NSLog(@"year->%@",year);
+    self.yearString = year;
+    [self.yearButton setTitle:self.yearString forState:UIControlStateNormal];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self timeButtonClick:self.timeButton];
+    });
 }
 
 #pragma mark CCDatePickerViewDelegate
 - (void)datePickerView:(CCDatePickerView *)pickerView didSelectDate:(NSDate *)date
 {
-    NSLog(@"date->%@",date);
+    NSString *yearString = [date stringForDateWithFormat:@"yyyy"];
+    NSString *monthAndDayString = [date stringForDateWithFormat:@"MM月dd日"];
+    self.monthAndDayStirng = monthAndDayString;
+    self.yearString = yearString;
+    
+    [self.timeButton setTitle:self.monthAndDayStirng forState:UIControlStateNormal];
+    [self.yearButton setTitle:self.yearString forState:UIControlStateNormal];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self hourButtonClick:self.hourButton];
+    });
 }
 
 #pragma mark CCHourPickerViewDelegate
 - (void)hourPickerView:(CCHourPickerView *)pickerView didSelectHour:(NSString *)hour
 {
-    NSLog(@"hour->%@",hour);
-    [self.hourButton setTitle:hour forState:UIControlStateNormal];
+    self.hourString = hour;
+    
+    [self.hourButton setTitle:self.hourString forState:UIControlStateNormal];
 
 }
 
 - (void)hourPickerView:(CCHourPickerView *)pickerView hourSelectEnd:(NSString *)hour
 {
-    [self.hourButton setTitle:hour forState:UIControlStateNormal];
+    self.hourString = hour;
+    
+    [self.hourButton setTitle:self.hourString forState:UIControlStateNormal];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self miniteButtonClick:self.miniteButton];
+    });
 }
 
 #pragma mark CCMinitePickerViewDelegate
 - (void)minitePickerView:(CCMinitePickerView *)pickerView didSelectMinite:(NSString *)minite
 {
-    NSLog(@"minite->%@",minite);
-    [self.miniteButton setTitle:minite forState:UIControlStateNormal];
+    self.miniteString = minite;
 
+    [self.miniteButton setTitle:self.miniteString forState:UIControlStateNormal];
 }
 
 
 - (void)minitePickerView:(CCMinitePickerView *)pickerView miniteSelectEnd:(NSString *)minite
 {
-    [self.miniteButton setTitle:minite forState:UIControlStateNormal];
+    self.miniteString = minite;
+    [self.miniteButton setTitle:self.miniteString forState:UIControlStateNormal];
+
 }
 
 #pragma mark - Public
@@ -110,15 +197,54 @@
 {
     [self.hourPickerView setHourWithDate:date];
     [self.minitePickerView setMiniteWithDate:date];
+    [self.datePickerView setSelectDate:date];
+    
+    self.yearString = [date stringForDateWithFormat:@"yyyy"];
+    self.monthAndDayStirng = [date stringForDateWithFormat:@"MM月dd日"];
+    self.hourString = [date stringForDateWithFormat:@"HH"];
+    self.miniteString = [date stringForDateWithFormat:@"mm"];
+    
+    [self.yearButton setTitle:self.yearString forState:UIControlStateNormal];
+    [self.hourButton setTitle:self.hourString forState:UIControlStateNormal];
+    [self.miniteButton setTitle:self.miniteString forState:UIControlStateNormal];
+    [self.timeButton setTitle:self.monthAndDayStirng forState:UIControlStateNormal];
 }
 
 #pragma mark - Event
+
+- (IBAction)comfirmButtonClick:(id)sender {
+    
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pickerView:didSelectTime:)]) {
+        NSString *dateString = [NSString stringWithFormat:@"%@-%@ %@:%@",self.yearString,self.monthAndDayStirng,self.hourString,self.miniteString];
+        
+        NSDate *date = [NSDate dateWithDateString:dateString format:@"yyyy-MM月dd日 HH:mm"];
+        [self.delegate pickerView:self didSelectTime:date];
+    }
+    
+    [self hide];
+}
+
+- (IBAction)cancelButtonClick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pickerViewCancelSelect:)]) {
+        [self.delegate pickerViewCancelSelect:self];
+    }
+    
+    [self hide];
+}
+
+- (IBAction)backgroundButtonClick:(id)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(pickerViewCancelSelect:)]) {
+        [self.delegate pickerViewCancelSelect:self];
+    }
+    [self hide];
+}
 
 - (IBAction)yearButtonClick:(id)sender {
     
     [self setupButton];
     
-    [UIView animateWithDuration:0.3f delay:0 usingSpringWithDamping:.5f initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:.3f initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.yearButton.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         
@@ -130,7 +256,7 @@
 - (IBAction)timeButtonClick:(id)sender {
     [self setupButton];
     
-    [UIView animateWithDuration:0.3f delay:0 usingSpringWithDamping:.5f initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:.3f initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.timeButton.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         
@@ -142,7 +268,7 @@
 - (IBAction)hourButtonClick:(id)sender {
     [self setupButton];
     
-    [UIView animateWithDuration:0.3f delay:0 usingSpringWithDamping:.5f initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:.3f initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.hourButton.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         
@@ -154,7 +280,7 @@
 - (IBAction)miniteButtonClick:(id)sender {
     [self setupButton];
     
-    [UIView animateWithDuration:0.3f delay:0 usingSpringWithDamping:.5f initialSpringVelocity:5 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5f delay:0 usingSpringWithDamping:.3f initialSpringVelocity:8 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.miniteButton.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         
@@ -321,5 +447,6 @@
     }
     return _minitePickerView;
 }
+
 
 @end

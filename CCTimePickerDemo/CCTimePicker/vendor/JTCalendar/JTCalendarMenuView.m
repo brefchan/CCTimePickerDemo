@@ -51,6 +51,7 @@
     self.showsHorizontalScrollIndicator = NO;
     self.showsVerticalScrollIndicator = NO;
     self.pagingEnabled = YES;
+    self.clipsToBounds = YES;
     
     for(int i = 0; i < NUMBER_PAGES_LOADED; ++i){
         JTCalendarMenuMonthView *monthView = [JTCalendarMenuMonthView new];
@@ -80,9 +81,17 @@
         x = (self.frame.size.width - width) / 2.;
     }
     
-    for(UIView *view in monthsViews){
-        view.frame = CGRectMake(x, 0, width, height);
-        x = CGRectGetMaxX(view.frame);
+    if(self.calendarManager.calendarAppearance.readFromRightToLeft){
+        for(UIView *view in [[monthsViews reverseObjectEnumerator] allObjects]){
+            view.frame = CGRectMake(x, 0, width, height);
+            x = CGRectGetMaxX(view.frame);
+        }
+    }
+    else{
+        for(UIView *view in monthsViews){
+            view.frame = CGRectMake(x, 0, width, height);
+            x = CGRectGetMaxX(view.frame);
+        }
     }
     
     self.contentSize = CGSizeMake(width * NUMBER_PAGES_LOADED, height);
@@ -93,76 +102,15 @@
     self->_currentDate = currentDate;
  
     NSCalendar *calendar = self.calendarManager.calendarAppearance.calendar;
-    NSDateComponents *comps = [calendar components:NSCalendarUnitMonth fromDate:currentDate];
-    NSInteger currentMonthIndex = comps.month;
+    NSDateComponents *dayComponent = [NSDateComponents new];
     
     for(int i = 0; i < NUMBER_PAGES_LOADED; ++i){
         JTCalendarMenuMonthView *monthView = monthsViews[i];
-        NSInteger monthIndex = currentMonthIndex - (NUMBER_PAGES_LOADED / 2) + i;
-        monthIndex = monthIndex % 12;
-
-        [monthView setMonthIndex:monthIndex];
-    }
-}
-
-#pragma mark - Load Month
-
-- (void)loadPreviousMonth
-{
-    JTCalendarMenuMonthView *monthView = [monthsViews lastObject];
-    
-    [monthsViews removeLastObject];
-    [monthsViews insertObject:monthView atIndex:0];
-    
-    NSCalendar *calendar = self.calendarManager.calendarAppearance.calendar;
-    
-    // Update currentDate
-    {
-        NSDateComponents *dayComponent = [NSDateComponents new];
-        dayComponent.month = -1;
-        self->_currentDate = [calendar dateByAddingComponents:dayComponent toDate:self.currentDate options:0];
-    }
-    
-    // Update monthView
-    {
-        NSDateComponents *comps = [calendar components:NSCalendarUnitMonth fromDate:self.currentDate];
-        NSInteger currentMonthIndex = comps.month;
         
-        NSInteger monthIndex = currentMonthIndex - (NUMBER_PAGES_LOADED / 2);
-        monthIndex = monthIndex % 12;
-        [monthView setMonthIndex:monthIndex];
+        dayComponent.month = i - (NUMBER_PAGES_LOADED / 2);
+        NSDate *monthDate = [calendar dateByAddingComponents:dayComponent toDate:self.currentDate options:0];
+        [monthView setCurrentDate:monthDate];
     }
-    
-    [self configureConstraintsForSubviews];
-}
-
-- (void)loadNextMonth
-{
-    JTCalendarMenuMonthView *monthView = [monthsViews firstObject];
-    
-    [monthsViews removeObjectAtIndex:0];
-    [monthsViews addObject:monthView];
-    
-    NSCalendar *calendar = self.calendarManager.calendarAppearance.calendar;
-    
-    // Update currentDate
-    {
-        NSDateComponents *dayComponent = [NSDateComponents new];
-        dayComponent.month = 1;
-        self->_currentDate = [calendar dateByAddingComponents:dayComponent toDate:self.currentDate options:0];
-    }
-    
-    // Update monthView
-    {
-        NSDateComponents *comps = [calendar components:NSCalendarUnitMonth fromDate:self.currentDate];
-        NSInteger currentMonthIndex = comps.month;
-        
-        NSInteger monthIndex = currentMonthIndex - (NUMBER_PAGES_LOADED / 2) + (NUMBER_PAGES_LOADED - 1);
-        monthIndex = monthIndex % 12;
-        [monthView setMonthIndex:monthIndex];
-    }
-    
-    [self configureConstraintsForSubviews];
 }
 
 #pragma mark - JTCalendarManager
@@ -187,7 +135,3 @@
 }
 
 @end
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 

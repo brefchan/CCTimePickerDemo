@@ -42,24 +42,19 @@
 {
     [super layoutSubviews];
     
-    if (self.bounds.size.width != self.bounds.size.height) {
-        if (self.bounds.size.width > self.bounds.size.height) {
-            self.miniteCircleSlider.frame = CGRectMake(0, 0, self.bounds.size.height, self.bounds.size.height);
-            self.miniteCircleSlider.center = self.center;
-        }else
-        {
-            self.miniteCircleSlider.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.width);
-            self.miniteCircleSlider.center = self.center;
-        }
+    if (self.bounds.size.width > self.bounds.size.height) {
+        self.miniteCircleSlider.frame = CGRectMake(0, 0, self.bounds.size.height - 20, self.bounds.size.height - 20);
+        self.miniteCircleSlider.center = self.center;
     }else
     {
-        self.miniteCircleSlider.frame = self.bounds;
+        self.miniteCircleSlider.frame = CGRectMake(0, 0, self.bounds.size.width - 20, self.bounds.size.width - 20);
+        self.miniteCircleSlider.center = self.center;
     }
 }
 
 #pragma mark - Public
 - (void)setMiniteWithDate:(NSDate *)date{
-    NSString *minite = [date dateToString:@"mm"];
+    NSString *minite = [date stringForDateWithFormat:@"mm"];
     
     self.minite = minite.integerValue;
     
@@ -70,7 +65,7 @@
 
 - (void)miniteSliderEndSelect:(CCMiniteCircleSlider *)sender
 {
-    NSString *miniteString = @(sender.minite).stringValue;
+    NSString *miniteString = [NSString stringWithFormat:@"%02ld",(long)sender.minite];
     if (self.delegate && [self.delegate respondsToSelector:@selector(minitePickerView:miniteSelectEnd:)]) {
         [self.delegate minitePickerView:self miniteSelectEnd:miniteString];
     }
@@ -78,7 +73,7 @@
 
 - (void)miniteSliderDidSelect:(CCMiniteCircleSlider *)sender
 {
-    NSString *miniteString = @(sender.minite).stringValue;
+    NSString *miniteString = [NSString stringWithFormat:@"%02ld",(long)sender.minite];
     if (self.delegate && [self.delegate respondsToSelector:@selector(minitePickerView:didSelectMinite:)]) {
         [self.delegate minitePickerView:self didSelectMinite:miniteString];
     }

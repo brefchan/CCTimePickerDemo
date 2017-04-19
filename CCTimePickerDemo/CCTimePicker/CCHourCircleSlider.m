@@ -48,7 +48,7 @@
     self.opaque = NO;
     
     self.currentTransform = CGAffineTransformMake(1, 0, 0, 1, 0, 0);
-    self.unselectColor = [UIColor darkGrayColor];
+    self.unselectColor = [UIColor colorWithRed:0.76 green:0.76 blue:0.76 alpha:1];
     self.selectColor = self.unselectColor;
     self.indicatorColor = [UIColor colorWithRed:30/255.f green:140/255.f blue:220/255.f alpha:1];
     
@@ -67,7 +67,7 @@
     CGFloat radius = contextSize.width / 2 - lineOffset;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetFillColorWithColor(context, [UIColor darkGrayColor].CGColor);
+    CGContextSetFillColorWithColor(context, self.unselectColor.CGColor);
     CGContextAddArc(context, center, center, radius, 0, 2 * M_PI, 0);
     CGContextDrawPath(context, kCGPathFill);
     

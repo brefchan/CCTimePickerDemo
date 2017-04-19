@@ -61,9 +61,17 @@
     CGFloat width = self.frame.size.width / 7.;
     CGFloat height = self.frame.size.height;
     
-    for(UIView *view in self.subviews){
-        view.frame = CGRectMake(x, 0, width, height);
-        x = CGRectGetMaxX(view.frame);
+    if(self.calendarManager.calendarAppearance.readFromRightToLeft){
+        for(UIView *view in [[self.subviews reverseObjectEnumerator] allObjects]){
+            view.frame = CGRectMake(x, 0, width, height);
+            x = CGRectGetMaxX(view.frame);
+        }
+    }
+    else{
+        for(UIView *view in self.subviews){
+            view.frame = CGRectMake(x, 0, width, height);
+            x = CGRectGetMaxX(view.frame);
+        }
     }
     
     [super layoutSubviews];
@@ -120,7 +128,3 @@
 }
 
 @end
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 
