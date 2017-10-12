@@ -10,7 +10,7 @@
 
 @interface CCHourCircleSlider : UIControl
 
-@property (nonatomic, assign) CGFloat lineWidth;
+@property (nonatomic, assign) CGFloat circleWidth;
 @property (nonatomic, strong) UIColor *selectColor;
 @property (nonatomic, strong) UIColor *unselectColor;
 @property (nonatomic, strong) UIColor *indicatorColor;

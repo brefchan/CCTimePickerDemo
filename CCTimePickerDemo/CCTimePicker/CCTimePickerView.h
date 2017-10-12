@@ -30,15 +30,10 @@ typedef NS_ENUM(NSUInteger,CCTimePickerState) {
 
 @interface CCTimePickerView : UIView
 
-@property (weak, nonatomic) IBOutlet UIButton *yearButton;
-@property (weak, nonatomic) IBOutlet UIButton *timeButton;
-@property (weak, nonatomic) IBOutlet UIView *hourAndMiniteView;
-@property (weak, nonatomic) IBOutlet UIButton *hourButton;
-@property (weak, nonatomic) IBOutlet UIButton *miniteButton;
-
-@property (nonatomic, strong) NSDate *currentSelectDate;;
-
 @property (nonatomic, assign) CCTimePickerState state;
+
+//是否自动跳转下一步
+@property (nonatomic, assign) BOOL isAutoNext;
 
 @property (nonatomic, weak) id<CCTimePickerViewDelegage> delegate;
 

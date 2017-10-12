@@ -57,14 +57,9 @@
 - (void)setHourWithDate:(NSDate *)date{
     NSString *hour = [date stringForDateWithFormat:@"HH"];
     NSInteger hourNumber;
-    if (hour.integerValue > 12) {
-        self.state = CCHourPickerViewStatePM;
-        hourNumber = hour.integerValue - 12;
-    }else
-    {
-        hourNumber = hour.integerValue;
-    }
-    
+   
+    hourNumber = hour.integerValue;
+
     self.hour = hourNumber;
     [self.hourSlider setHour:hourNumber];
 }

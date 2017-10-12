@@ -8,10 +8,16 @@
 
 #import "CCHourCircleSlider.h"
 
+#define numberPadding 10
+
 @interface CCHourCircleSlider()
 
 @property (nonatomic, assign) CGFloat rotation;
 @property (nonatomic) CGAffineTransform currentTransform;
+
+@property (nonatomic, assign) CGFloat AMLength;
+@property (nonatomic, assign) BOOL isSelectAM;
+
 
 @end
 
@@ -52,49 +58,90 @@
     self.selectColor = self.unselectColor;
     self.indicatorColor = [UIColor colorWithRed:30/255.f green:140/255.f blue:220/255.f alpha:1];
     
-    self.lineWidth = 20;
+    self.circleWidth = 20;
     self.contextPadding = 20;
+
 }
 
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
     
-    CGFloat lineOffset = self.lineWidth / 2;
+    CGFloat lineOffset = self.circleWidth / 2;
     CGSize contextSize = CGSizeMake(rect.size.width - self.contextPadding, rect.size.height - self.contextPadding);
     
-    CGFloat center = rect.size.width / 2;
+    CGFloat centerX = rect.size.width / 2;
+    CGFloat centerY = rect.size.height / 2;
     CGFloat radius = contextSize.width / 2 - lineOffset;
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetFillColorWithColor(context, self.unselectColor.CGColor);
-    CGContextAddArc(context, center, center, radius, 0, 2 * M_PI, 0);
+    CGContextAddArc(context, centerX, centerY, radius, 0, 2 * M_PI, 0);
     CGContextDrawPath(context, kCGPathFill);
     
     CGContextSetStrokeColorWithColor(context, self.unselectColor.CGColor);
-    CGContextSetLineWidth(context, self.lineWidth);
-    CGContextAddArc(context, center, center, radius, 0, 2 * M_PI, 0);
+    CGContextSetLineWidth(context, self.circleWidth);
+    CGContextAddArc(context, centerX, centerY, radius, 0, 2 * M_PI, 0);
     CGContextDrawPath(context, kCGPathStroke);
     
-    CGPoint centerPoint = CGPointMake(center - lineOffset, center - lineOffset);
+    CGPoint centerPoint = CGPointMake(centerX - lineOffset, centerY - lineOffset);
+    
+    
+    
+    self.AMLength = fabs(contextSize.width / 2 - numberPadding / 2 - self.circleWidth);
+
+    
+    //绘制小圆球
     CGPoint dotPoint;
-    dotPoint.y = round(centerPoint.x + (centerPoint.y - self.contextPadding / 2) * sin(self.rotation));
-    dotPoint.x = round(centerPoint.x + (centerPoint.x - self.contextPadding / 2) * cos(self.rotation));
+    
+    if (self.isSelectAM) {
+        dotPoint.y = round(centerPoint.y + (centerPoint.y - self.circleWidth - numberPadding - self.contextPadding / 2) * sin(self.rotation));
+        dotPoint.x = round(centerPoint.x + (centerPoint.x - self.circleWidth - numberPadding - self.contextPadding / 2) * cos(self.rotation));
+    }else
+    {
+        dotPoint.y = round(centerPoint.y + (centerPoint.y - self.contextPadding / 2) * sin(self.rotation));
+        dotPoint.x = round(centerPoint.x + (centerPoint.x - self.contextPadding / 2) * cos(self.rotation));
+    }
     
     [self.indicatorColor set];
     
-    CGContextFillEllipseInRect(context, CGRectMake(dotPoint.x, dotPoint.y, self.lineWidth, self.lineWidth));
+    CGContextFillEllipseInRect(context, CGRectMake(dotPoint.x, dotPoint.y, self.circleWidth, self.circleWidth));
     
     CGContextSetStrokeColorWithColor(context, self.indicatorColor.CGColor);
     CGContextSetLineWidth(context, 1.f);
-    CGContextMoveToPoint(context, center, center);
-    CGContextAddLineToPoint(context, dotPoint.x + self.lineWidth / 2 , dotPoint.y + self.lineWidth / 2);
+    CGContextMoveToPoint(context, centerX, centerY);
+    CGContextAddLineToPoint(context, dotPoint.x + self.circleWidth / 2 , dotPoint.y + self.circleWidth / 2);
     CGContextStrokePath(context);
     
+    
+    
+    //绘制0~12
     for (float i = 0; i < 12; i ++) {
         CGFloat timeNumberRotation = (i * 30.f - 60) / 360.f * 2.f * M_PI;
         CGPoint timeNumberPoint;
-        timeNumberPoint.y = round(centerPoint.x + (centerPoint.y - self.contextPadding / 2) * sin(timeNumberRotation));
+        timeNumberPoint.y = round(centerPoint.y + (centerPoint.y - self.circleWidth - numberPadding - self.contextPadding / 2) * sin(timeNumberRotation));
+        timeNumberPoint.x = round(centerPoint.x + (centerPoint.x - self.circleWidth - numberPadding - self.contextPadding / 2) * cos(timeNumberRotation));
+        
+        CGContextSetLineWidth(context, 1.f);
+        NSString *timeNumber = [NSString stringWithFormat:@"%.0f",i + 1];
+        CGSize stringSize = [timeNumber sizeWithAttributes:@{
+                                                             NSFontAttributeName : [UIFont systemFontOfSize:12]
+                                                             }];
+        
+        [timeNumber drawInRect:CGRectMake(timeNumberPoint.x + self.circleWidth / 2 - stringSize.width / 2, timeNumberPoint.y + self.circleWidth / 2 - stringSize.height / 2, self.circleWidth, self.circleWidth)
+                withAttributes:@{
+                                 NSFontAttributeName : [UIFont systemFontOfSize:12],
+                                 NSForegroundColorAttributeName : [UIColor whiteColor]
+                                 }];
+        
+    }
+    
+    
+    //绘制13~24
+    for (float i = 12; i < 24; i ++) {
+        CGFloat timeNumberRotation = (i * 30.f - 60) / 360.f * 2.f * M_PI;
+        CGPoint timeNumberPoint;
+        timeNumberPoint.y = round(centerPoint.y + (centerPoint.y - self.contextPadding / 2) * sin(timeNumberRotation));
         timeNumberPoint.x = round(centerPoint.x + (centerPoint.x - self.contextPadding / 2) * cos(timeNumberRotation));
         
         CGContextSetLineWidth(context, 1.f);
@@ -103,7 +150,7 @@
                                                              NSFontAttributeName : [UIFont systemFontOfSize:12]
                                                              }];
         
-        [timeNumber drawInRect:CGRectMake(timeNumberPoint.x + self.lineWidth / 2 - stringSize.width / 2, timeNumberPoint.y + self.lineWidth / 2 - stringSize.height / 2, self.lineWidth, self.lineWidth)
+        [timeNumber drawInRect:CGRectMake(timeNumberPoint.x + self.circleWidth / 2 - stringSize.width / 2, timeNumberPoint.y + self.circleWidth / 2 - stringSize.height / 2, self.circleWidth, self.circleWidth)
                 withAttributes:@{
                                  NSFontAttributeName : [UIFont systemFontOfSize:12],
                                  NSForegroundColorAttributeName : [UIColor whiteColor]
@@ -127,6 +174,15 @@
     CGFloat newRotation = (CGFloat)newAngle / 180.f * M_PI;
     
     CGAffineTransform transform = CGAffineTransformRotate(_currentTransform, newRotation);
+    
+    
+    CGFloat lengthBetweenCenterAndTouchPoint = sqrt((fabs(starTouchPoint.x) - fabs(center.x)) * (fabs(starTouchPoint.x) - fabs(center.x)) + (fabs(starTouchPoint.y) - fabs(center.y)) * (fabs(starTouchPoint.y) - fabs(center.y)));
+    
+    if (lengthBetweenCenterAndTouchPoint < self.AMLength) {
+        self.isSelectAM = YES;
+    }else{
+        self.isSelectAM = NO;
+    }
     
     [self changeAngleWithTransform:transform rotation:newRotation];
     
@@ -158,6 +214,14 @@
     
     CGFloat newRotation = (CGFloat)newAngle / 180.f * M_PI;
     
+    CGFloat lengthBetweenCenterAndTouchPoint = sqrt((fabs(starTouchPoint.x) - fabs(center.x)) * (fabs(starTouchPoint.x) - fabs(center.x)) + (fabs(starTouchPoint.y) - fabs(center.y)) * (fabs(starTouchPoint.y) - fabs(center.y)));
+    
+    if (lengthBetweenCenterAndTouchPoint < self.AMLength) {
+        self.isSelectAM = YES;
+    }else{
+        self.isSelectAM = NO;
+    }
+    
     [self changeAngleWithTransform:transform rotation:newRotation];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
     return YES;
@@ -182,11 +246,22 @@
         hour = angle / 30 - 3;
     }
     
-    return hour;
+    if (self.isSelectAM) {
+        return hour;
+    }else{
+        return hour + 12;
+    }
+    
 }
 
 - (void)setHour:(NSInteger)hour
 {
+    if (hour > 12) {
+        self.isSelectAM = NO;
+    }else{
+        self.isSelectAM = YES;
+    }
+    
     NSInteger angle;
     if (hour >= 9 && hour < 12) {
         angle = (hour - 9) * 30;

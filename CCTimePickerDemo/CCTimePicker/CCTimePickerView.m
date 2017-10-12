@@ -30,12 +30,19 @@
 @property (weak, nonatomic) IBOutlet UIView *selectCotentView;
 @property (nonatomic, strong) CCDatePickerView *datePickerView;
 
+@property (weak, nonatomic) IBOutlet UIButton *yearButton;
+@property (weak, nonatomic) IBOutlet UIButton *timeButton;
+@property (weak, nonatomic) IBOutlet UIView *hourAndMiniteView;
+@property (weak, nonatomic) IBOutlet UIButton *hourButton;
+@property (weak, nonatomic) IBOutlet UIButton *miniteButton;
+
 @property (nonatomic, strong) CCYearPickerView *yearPickerView;
 @property (nonatomic, strong) CCHourPickerView *hourPickerView;
 @property (nonatomic, strong) CCMinitePickerView *minitePickerView;
 
 @property (nonatomic, strong) NSString *yearString;
-@property (nonatomic, strong) NSString *monthAndDayStirng;
+@property (nonatomic, strong) NSString *monthString;
+@property (nonatomic, strong) NSString *dayString;
 @property (nonatomic, strong) NSString *hourString;
 @property (nonatomic, strong) NSString *miniteString;
 
@@ -136,25 +143,30 @@
     self.yearString = year;
     [self.yearButton setTitle:self.yearString forState:UIControlStateNormal];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self timeButtonClick:self.timeButton];
-    });
+    if (self.isAutoNext) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self timeButtonClick:self.timeButton];
+        });
+    }
 }
 
 #pragma mark CCDatePickerViewDelegate
 - (void)datePickerView:(CCDatePickerView *)pickerView didSelectDate:(NSDate *)date
 {
     NSString *yearString = [date stringForDateWithFormat:@"yyyy"];
-    NSString *monthAndDayString = [date stringForDateWithFormat:@"MM月dd日"];
-    self.monthAndDayStirng = monthAndDayString;
+    self.monthString = [date stringForDateWithFormat:@"MM"];
+    self.dayString = [date stringForDateWithFormat:@"dd"];
+
     self.yearString = yearString;
     
-    [self.timeButton setTitle:self.monthAndDayStirng forState:UIControlStateNormal];
+    [self.timeButton setTitle:[NSString stringWithFormat:@"%@月%@日",self.monthString,self.dayString] forState:UIControlStateNormal];
     [self.yearButton setTitle:self.yearString forState:UIControlStateNormal];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self hourButtonClick:self.hourButton];
-    });
+    if (self.isAutoNext) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self hourButtonClick:self.hourButton];
+        });
+    }
 }
 
 #pragma mark CCHourPickerViewDelegate
@@ -171,9 +183,12 @@
     self.hourString = hour;
     
     [self.hourButton setTitle:self.hourString forState:UIControlStateNormal];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self miniteButtonClick:self.miniteButton];
-    });
+    
+    if (self.isAutoNext) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self miniteButtonClick:self.miniteButton];
+        });
+    }
 }
 
 #pragma mark CCMinitePickerViewDelegate
@@ -200,25 +215,34 @@
     [self.datePickerView setSelectDate:date];
     
     self.yearString = [date stringForDateWithFormat:@"yyyy"];
-    self.monthAndDayStirng = [date stringForDateWithFormat:@"MM月dd日"];
+    self.monthString = [date stringForDateWithFormat:@"MM"];
+    self.dayString = [date stringForDateWithFormat:@"dd"];
     self.hourString = [date stringForDateWithFormat:@"HH"];
     self.miniteString = [date stringForDateWithFormat:@"mm"];
     
     [self.yearButton setTitle:self.yearString forState:UIControlStateNormal];
     [self.hourButton setTitle:self.hourString forState:UIControlStateNormal];
     [self.miniteButton setTitle:self.miniteString forState:UIControlStateNormal];
-    [self.timeButton setTitle:self.monthAndDayStirng forState:UIControlStateNormal];
+    [self.timeButton setTitle:[NSString stringWithFormat:@"%@月%@日",self.monthString,self.dayString] forState:UIControlStateNormal];
 }
 
 #pragma mark - Event
 
 - (IBAction)comfirmButtonClick:(id)sender {
     
-    
     if (self.delegate && [self.delegate respondsToSelector:@selector(pickerView:didSelectTime:)]) {
-        NSString *dateString = [NSString stringWithFormat:@"%@-%@ %@:%@",self.yearString,self.monthAndDayStirng,self.hourString,self.miniteString];
         
-        NSDate *date = [NSDate dateWithDateString:dateString format:@"yyyy-MM月dd日 HH:mm"];
+        NSDateComponents *compt = [[NSDateComponents alloc] init];
+        [compt setYear:self.yearString.integerValue];
+        [compt setMonth:self.monthString.integerValue];
+        [compt setDay:self.dayString.integerValue];
+        [compt setHour:self.hourString.integerValue];
+        [compt setMinute:self.miniteString.integerValue];
+        
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        [calendar setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+        NSDate *date = [calendar dateFromComponents:compt];
+        
         [self.delegate pickerView:self didSelectTime:date];
     }
     

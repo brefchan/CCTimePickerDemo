@@ -28,6 +28,7 @@
     
     self.pickerView = [CCTimePickerView viewFromXib];
     self.pickerView.delegate = self;
+    self.pickerView.isAutoNext = YES;
     [self.pickerView setCurrentDate:[NSDate date]];
     
 }
